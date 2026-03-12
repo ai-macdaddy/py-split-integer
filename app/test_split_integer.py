@@ -100,3 +100,43 @@ def test_should_add_zeros_when_value_is_less_than_number_of_parts(
     assert (
         split_integer.split_integer(value, num_of_parts) == result
     ), f"Function should return {result} when {value} is split into {num_of_parts} parts, but it doesn't"
+
+
+# Test 6
+@pytest.mark.parametrize(
+    "value, number_of_parts, result",
+    [
+        (5, 2, [2, 3]),
+        (11, 3, [3, 4, 4]),
+        (17, 4, [4, 4, 4, 5]),
+        (31, 5, [6, 6, 6, 6, 7]),
+        (100, 9, [11, 11, 11, 11, 11, 11, 11, 11, 12]),
+    ],
+)
+def test_difference_between_min_and_max_is_1_or_less(
+    value: int, number_of_parts: int, result: list
+) -> None:
+    result = split_integer.split_integer(value, number_of_parts)
+    assert (
+        max(result) - min(result) <= 1
+    ), "The difference between the maximum and minimum numbers in the result should be 1 or less"
+
+
+@pytest.mark.parametrize(
+    "value, number_of_parts, result",
+    [
+        (5, 2, [2, 3]),
+        (11, 3, [3, 4, 4]),
+        (17, 4, [4, 4, 4, 5]),
+        (31, 5, [6, 6, 6, 6, 7]),
+        (100, 9, [11, 11, 11, 11, 11, 11, 11, 11, 12]),
+    ],
+)
+def test_result_list_contains_exact_number_of_parts(
+    value: int, number_of_parts: int, result: list
+) -> None:
+    result = split_integer.split_integer(value, number_of_parts)
+    assert (
+        len(result) == number_of_parts
+    ), f"The result list should contain exactly "
+    f"{number_of_parts} parts, but it contains {len(result)} parts"
