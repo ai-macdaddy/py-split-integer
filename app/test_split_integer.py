@@ -4,23 +4,23 @@ from app import split_integer
 
 # Test 1
 @pytest.mark.parametrize(
-    "value, num_of_parts, result",
+    "value, num_of_parts",
     [
-        (2, 2, 2),
-        (3, 3, 3),
-        (4, 2, 4),
-        (6, 3, 6),
-        (17, 7, 17),
-        (31, 11, 31),
-        (100, 9, 100),
+        (2, 2),
+        (3, 3),
+        (4, 2),
+        (6, 3),
+        (17, 7),
+        (31, 11),
+        (100, 9),
     ],
 )
 def test_sum_of_the_parts_should_be_equal_to_value(
-    value: int, num_of_parts: int, result: int
+    value: int, num_of_parts: int
 ) -> None:
     assert (
-        sum(split_integer.split_integer(value, num_of_parts)) == result
-    ), f"Sum of the parts should be equal to {result}, but it isn't"
+        sum(split_integer.split_integer(value, num_of_parts)) == value
+    ), f"Sum of the parts should be equal to {value}, but it isn't"
 
 
 # Test 2
@@ -104,17 +104,17 @@ def test_should_add_zeros_when_value_is_less_than_number_of_parts(
 
 # Test 6
 @pytest.mark.parametrize(
-    "value, number_of_parts, result",
+    "value, number_of_parts",
     [
-        (5, 2, [2, 3]),
-        (11, 3, [3, 4, 4]),
-        (17, 4, [4, 4, 4, 5]),
-        (31, 5, [6, 6, 6, 6, 7]),
-        (100, 9, [11, 11, 11, 11, 11, 11, 11, 11, 12]),
+        (5, 2),
+        (11, 3),
+        (17, 4),
+        (31, 5),
+        (100, 9),
     ],
 )
 def test_difference_between_min_and_max_is_1_or_less(
-    value: int, number_of_parts: int, result: list
+    value: int, number_of_parts: int
 ) -> None:
     result = split_integer.split_integer(value, number_of_parts)
     assert (
@@ -124,20 +124,19 @@ def test_difference_between_min_and_max_is_1_or_less(
 
 # Test 7
 @pytest.mark.parametrize(
-    "value, number_of_parts, result",
+    "value, number_of_parts",
     [
-        (5, 2, [2, 3]),
-        (11, 3, [3, 4, 4]),
-        (17, 4, [4, 4, 4, 5]),
-        (31, 5, [6, 6, 6, 6, 7]),
-        (100, 9, [11, 11, 11, 11, 11, 11, 11, 11, 12]),
+        (5, 2),
+        (11, 3),
+        (17, 4),
+        (31, 5),
+        (100, 9),
     ],
 )
 def test_result_list_contains_exact_number_of_parts(
-    value: int, number_of_parts: int, result: list
+    value: int, number_of_parts: int
 ) -> None:
-    result = split_integer.split_integer(value, number_of_parts)
     assert (
-        len(result) == number_of_parts
+        len(split_integer.split_integer(value, number_of_parts)) == number_of_parts
     ), "The result list should contain exactly "
-    f"{number_of_parts} parts, but it contains {len(result)} parts"
+    f"{number_of_parts} parts"
