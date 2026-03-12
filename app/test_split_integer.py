@@ -122,6 +122,7 @@ def test_difference_between_min_and_max_is_1_or_less(
     ), "The difference between the maximum and minimum numbers in the result should be 1 or less"
 
 
+# Test 7
 @pytest.mark.parametrize(
     "value, number_of_parts, result",
     [
@@ -138,5 +139,5 @@ def test_result_list_contains_exact_number_of_parts(
     result = split_integer.split_integer(value, number_of_parts)
     assert (
         len(result) == number_of_parts
-    ), f"The result list should contain exactly "
+    ), "The result list should contain exactly "
     f"{number_of_parts} parts, but it contains {len(result)} parts"
